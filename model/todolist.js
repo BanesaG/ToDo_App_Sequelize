@@ -1,16 +1,13 @@
-const mongoose = require('mongoose');
-
-var Schema = mongoose.Schema;
-
-var ToDoListSchema = new Schema({
-    
+module.exports = function(sequelize, DataTypes) {
+  var ToDoList = sequelize.define("ToDoList", {
     task: {
-      type: String,
-      required: "Task is Required"
+      type: DataTypes.STRING,
+      allowNull: false,
     },
-    completed: Boolean
+    complete: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
+    }
   });
-
-var ToDoList = mongoose.model("ToDoList", ToDoListSchema);
-
-module.exports = ToDoList;
+  return ToDoList;
+};

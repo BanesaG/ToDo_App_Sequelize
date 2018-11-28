@@ -8,7 +8,7 @@ const io = require('socket.io')(server);
 
 const PORT = process.env.PORT || 8080;
 
-const db = require("./models");
+const db = require("./model");
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());

@@ -1,4 +1,4 @@
-const db = require('../model');
+ const db = require('../model');
 
 module.exports = function(app) {
 
@@ -6,9 +6,9 @@ module.exports = function(app) {
       db.ToDoList.find({}).then(function(dbtodolist){  
         res.json(dbtodolist);
     })
-    .catch(function(err){
+    .catch(function(err){ //example does not have lines 9 and 10//
         res.json(err);
-    })
+    });
   });
 
   app.get('/api/selected/:id', function(req, res) {
@@ -57,4 +57,4 @@ module.exports = function(app) {
               res.json(err);
           });
   });
-}
+};
