@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!--reset.css & google font & jquery & bootstrap & style.css & awesomeFont & todo.js & moment.js-->
+     <link rel="stylesheet" href="../assets/css/reset.css">
+     <!-- <link href="https://fonts.googleapis.com/css?family=Montserrat|Open+Sans" rel="stylesheet"> -->
+     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+     <link rel="stylesheet" href="../assets/css/style.css">
+     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
+     <script src="../assets/js/todotable.js"></script>
+    <title>to do list application</title>
+</head>
+    <body>
+        <div id="container" class="container">
+            <div class="card">
+                <div class="card-header">
+                    <span class="col-xs-12 row">
+                        <h1 class=".col-md-1-5 pr-2 pt-0" id="date1"></h1>
+                        <div class="col">
+                            <h5 class="row mt-4" id="date2"></h5>
+                            <h5 class="row mb-3" id="date3"></h5>
+                        </div>
+                    </span>
+                    <div class="form-group">
+                            <form role="form" autocomplete="off" class="input-group-btn">
+                                <div class="autocomplete" id="autoMainId">
+                                    <input autofocus name="inputListItem" placeholder="Add a new to do" id="inputTxtId"/>
+                                </div>
+                                <!-- <button class="fa" type="submit" id="addBtn">&#xf064;</button> -->
+                            </form>
+                        </div>
+                </div>
+                <div class="card-body text-left">
+                    <ul class="list-unstyled" id="todo"></ul>  
+                </div>
+            <!-- <div class="card-footer"></div> -->
+            </div>
+            
+            <!-- <div class='autocomplete-items' id='autocomplete-list'></div> -->
+        </div>
+        
+    </body>
+</html>

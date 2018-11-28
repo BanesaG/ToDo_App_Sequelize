@@ -1,0 +1,27 @@
+{
+  "name": "todo_app_sequelize",
+  "version": "1.0.0",
+  "description": "To do list sequelize",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "mysql2": "^1.6.4",
+    "sequelize": "^4.41.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BanesaG/ToDo_App_Sequelize.git"
+  },
+  "author": "Banesa Guaderrama",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BanesaG/ToDo_App_Sequelize/issues"
+  },
+  "homepage": "https://github.com/BanesaG/ToDo_App_Sequelize#readme"
+}
