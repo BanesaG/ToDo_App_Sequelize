@@ -18,15 +18,15 @@ $(() => {
     autoCompArray.push(dataList[0].task);
     for (let i = 1; i < dataList.length; i++) {
       let checkDuplicate = false;
-      for (let j = 0; j < autoCompArray.length; j++) {
-       if(dataList[i].task === autoCompArray[j]) {
+      for (let 
+         = 0; taskList < autoCompArray.length; taskList++) {
+       if(dataList[i].task === autoCompArray[taskList]) {
          checkDuplicate = true;
          break;
        }
       }
       if(checkDuplicate === false) autoCompArray.push(dataList[i].task);
     }
-
   }
 
   const renderTables = (outputElement, dataList) => {
@@ -35,7 +35,7 @@ $(() => {
       dataList.forEach(e => {
         const output = $(outputElement);
         let listItem = $(`<li class='mt-4 todoItems' id='${e._id}'>`);
-        if(e.compeleted === false){
+        if(e.complete === false){
           listItem.append(
             $("<p>").text(e.task),
             $("<button style='font-size:24px' class='far fa-circle removeBtn'>").text('')
@@ -47,12 +47,11 @@ $(() => {
         );
       }
         output.append(listItem);
-      });
-    
+      }); 
   }
 
   const render = function () {
-    $('#inputTxtId').val('');
+    $('#inputText').val('');
     $.ajax({ url: "/api/todolist", method: "GET" })
       .then((todoList) => {
         console.log('todolist', todoList);
@@ -82,7 +81,7 @@ $(() => {
 socket.on('emit-task', (data) => {
   if(data.err) $('errMessage').text(data.err);
   else{
-    $("#inputTxtId").empty();
+    $("#inputText").empty();
           $("#todo").empty();
           render();
   }
@@ -95,12 +94,12 @@ $(document).keypress(function(e) {
   }
 });
    
-const checkOpration = function () {
+const checkOperation = function () {
       event.preventDefault();
       if(!$(this).hasClass("doneToDo")){
         taskDel = {
           task_id: String($(this).parent().attr('id')),
-          compeleted: true
+          complete: true
         }
     
         $.ajax({url: "/api/updateTask",  method: "PUT", data: taskDel}).then(function(data) {
@@ -123,10 +122,10 @@ const checkOpration = function () {
       };
     }
   
-  $('#todo').on('click','.removeBtn' , checkOpration);
+  $('#todo').on('click','.removeBtn' , checkOperation);
 
   let currentFocus;
-  $('#inputTxtId').on("input", function(e) {
+  $('#inputText').on("input", function(e) {
     let a, b, i, val = this.value;
     closeAllLists();//
     if (!val) { return false;}
@@ -152,7 +151,7 @@ const checkOpration = function () {
 
   function closeAllLists(elmnt) {
     var x = document.getElementsByClassName("autocomplete-items");
-    const inp = $('#inputTxtId');
+    const inp = $('#inputText');
     for (var i = 0; i < x.length; i++) {
       if (elmnt != x[i] && elmnt != inp) {
       x[i].parentNode.removeChild(x[i]);
@@ -160,7 +159,7 @@ const checkOpration = function () {
   }
 }
 
-  $('#inputTxtId').on("keydown", function(e) {
+  $('#inputText').on("keydown", function(e) {
     var x = document.getElementById(this.id + "autocomplete-list");
     if (x) x = x.getElementsByTagName("div");
     if (e.keyCode == 40) {
@@ -201,6 +200,4 @@ const checkOpration = function () {
 
 document.addEventListener("click", function (e) {
   closeAllLists(e.target);
-});
-
 });
