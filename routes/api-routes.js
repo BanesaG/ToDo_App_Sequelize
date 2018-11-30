@@ -23,8 +23,8 @@ module.exports = function(app) {
   app.post('/api/addNewTask', function(req, res) {
 
     db.ToDoList.create(req.body)
-        .then(function(dbtodolist) {
-          res.json({dbtodolist});
+        .then(function(data) {
+          res.json({data});
         })
         .catch(function(err) {
           res.json({err: err});

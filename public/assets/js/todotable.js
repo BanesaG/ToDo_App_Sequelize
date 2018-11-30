@@ -2,9 +2,6 @@ const socket = io();
 const date = moment().format('llll');
 let autoCompArray = [];
 
-/**
- * @description getting and showing date top on header and load all to do list on load page
- */
 $(() => {
   
   $(document).ready(() => {
@@ -15,10 +12,7 @@ $(() => {
     render();
   });
 
-  /**
-   * @description uses for Auto compelete words
-   * @param {Array of todo} dataList 
-   */
+
   const searchList = function(dataList){
     autoCompArray = [];
     autoCompArray.push(dataList[0].task);
@@ -35,11 +29,6 @@ $(() => {
 
   }
 
-  /**
-   * @description show all to do list to the page
-   * @param {HTMLElement} outputElement 
-   * @param {Array of todo} dataList 
-   */
   const renderTables = (outputElement, dataList) => {
       searchList(dataList);
       dataList.reverse();
@@ -62,26 +51,20 @@ $(() => {
     
   }
 
-  /**
-   * @description The AJAX function uses the URL of our API to GET the data associated with it (initially set to localhost)
-   */
   const render = function () {
     $('#inputTxtId').val('');
     $.ajax({ url: "/api/todolist", method: "GET" })
       .then((todoList) => {
+        console.log('todolist', todoList);
        renderTables('#todo', todoList);
       });
   }
 
 
-  /**
-   * @description This function resets all of the data in our tables. This is intended to let you restart a demo.
-   */
  const addNewTask = function () {
-  event.preventDefault();
   newTask = {
-    task: $('#inputTxtId').val(),
-    compeleted: false
+    task: $('#inputText').val(),
+    complete: false
   }
   
   switch(true){
@@ -96,9 +79,6 @@ $(() => {
   }
 }
 
-/**
- * @description socket.io show added new task to all client
- */
 socket.on('emit-task', (data) => {
   if(data.err) $('errMessage').text(data.err);
   else{
@@ -108,12 +88,11 @@ socket.on('emit-task', (data) => {
   }
 });
 
-/**
- * @description enter btn pressed to add new to do
- */
 $(document).keypress(function(e) {
-  if ( e.keyCode === 13 )
-      addNewTask();
+  if ( e.keyCode === 13 ) {
+    e.preventDefault();
+     addNewTask();
+  }
 });
    
 const checkOpration = function () {
@@ -146,9 +125,6 @@ const checkOpration = function () {
   
   $('#todo').on('click','.removeBtn' , checkOpration);
 
-  /**
-   * @description with change inputTxtId input tag make Auto compelete
-   */
   let currentFocus;
   $('#inputTxtId').on("input", function(e) {
     let a, b, i, val = this.value;
@@ -174,9 +150,6 @@ const checkOpration = function () {
     }
 });
 
- /**
-   * @description close all autocomplete lists in the document, except the one passed as an argument:
-   */
   function closeAllLists(elmnt) {
     var x = document.getElementsByClassName("autocomplete-items");
     const inp = $('#inputTxtId');
@@ -187,12 +160,6 @@ const checkOpration = function () {
   }
 }
 
-/**
-   * @description execute a function presses a key on the keyboard:
-   * @description:40  If the arrow DOWN key is pressed,increase the currentFocus variable:
-   * @description: 38 If the arrow UP key is pressed,decrease the currentFocus variable:
-   * @description: 13 enter
-   */
   $('#inputTxtId').on("keydown", function(e) {
     var x = document.getElementById(this.id + "autocomplete-list");
     if (x) x = x.getElementsByTagName("div");
@@ -218,9 +185,6 @@ const checkOpration = function () {
     }
 });
 
-/**
-   * @description a function to classify an item as "active": start by removing the "active" class on all items: add class "autocomplete-active":
-   */
   function addActive(x) {
     if (!x) return false;
     removeActive(x);
@@ -229,18 +193,12 @@ const checkOpration = function () {
     x[currentFocus].classList.add("autocomplete-active");
   }
 
-  /**
-   * @description a function to remove the "active" class from all autocomplete items:
-   */
   function removeActive(x) {
     for (var i = 0; i < x.length; i++) {
       x[i].classList.remove("autocomplete-active");
     }
   }
 
-   /**
-   * @description execute a function when someone clicks in the document:
-   */
 document.addEventListener("click", function (e) {
   closeAllLists(e.target);
 });
